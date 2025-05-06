@@ -115,62 +115,113 @@
 
 
 
-import tkinter as tk
+# import tkinter as tk
 
-def start_connection():
-    status_label.config(text="Bağlantı Başlatıldı", fg="green")
+# def start_connection():
+#     status_label.config(text="Bağlantı Başlatıldı", fg="green")
 
-def stop_connection():
-    status_label.config(text="Bağlantı Durduruldu", fg="red")
+# def stop_connection():
+#     status_label.config(text="Bağlantı Durduruldu", fg="red")
 
-root = tk.Tk()
-root.title("YKI Arayüzü")
-root.geometry("300x200")
+# root = tk.Tk()
+# root.title("YKI Arayüzü")
+# root.geometry("300x200")
 
-status_label = tk.Label(root, text="Bağlantı Durumu: Kapalı", fg="gray")
-status_label.pack(pady=10)
+# status_label = tk.Label(root, text="Bağlantı Durumu: Kapalı", fg="gray")
+# status_label.pack(pady=10)
 
-start_btn = tk.Button(root, text="Bağlantıyı Başlat", command=start_connection)
-start_btn.pack(pady=5)
+# start_btn = tk.Button(root, text="Bağlantıyı Başlat", command=start_connection)
+# start_btn.pack(pady=5)
 
-stop_btn = tk.Button(root, text="Bağlantıyı Durdur", command=stop_connection)
-stop_btn.pack(pady=5)
+# stop_btn = tk.Button(root, text="Bağlantıyı Durdur", command=stop_connection)
+# stop_btn.pack(pady=5)
 
-root.mainloop()
-
-
-
-
-import rclpy
-from rclpy.node import Node
-from std_msgs.msg import String
-
-class YKI_GUI_Publisher(Node):
-
-    def __init__(self):
-        super().__init__('yki_gui_publisher')
-        self.publisher_ = self.create_publisher(String, 'yki_baglanti', 10)
-
-    def send_connection_signal(self, signal):
-        msg = String()
-        msg.data = signal
-        self.publisher_.publish(msg)
-        self.get_logger().info(f'Gönderilen mesaj: "{msg.data}"')
-
-def main(args=None):
-    rclpy.init(args=args)
-    node = YKI_GUI_Publisher()
-    node.send_connection_signal("BAŞLAT")
-    rclpy.shutdown()
-
-if __name__ == '__main__':
-    main()
-
-
-start_btn = tk.Button(root, text="Bağlantıyı Başlat", command=lambda: yki_node.send_connection_signal("BAŞLAT"))
+# root.mainloop()
 
 
 
 
+# import rclpy
+# from rclpy.node import Node
+# from std_msgs.msg import String
 
- 
+# class YKI_GUI_Publisher(Node):
+
+#     def __init__(self):
+#         super().__init__('yki_gui_publisher')
+#         self.publisher_ = self.create_publisher(String, 'yki_baglanti', 10)
+
+#     def send_connection_signal(self, signal):
+#         msg = String()
+#         msg.data = signal
+#         self.publisher_.publish(msg)
+#         self.get_logger().info(f'Gönderilen mesaj: "{msg.data}"')
+
+# def main(args=None):
+#     rclpy.init(args=args)
+#     node = YKI_GUI_Publisher()
+#     node.send_connection_signal("BAŞLAT")
+#     rclpy.shutdown()
+
+# if __name__ == '__main__':
+#     main()
+
+
+# start_btn = tk.Button(root, text="Bağlantıyı Başlat", command=lambda: yki_node.send_connection_signal("BAŞLAT"))
+
+
+
+
+#####################################################################################################3
+                                    #6.05.2025 dersi#
+# veri modeli 
+# 1-linked list, 
+#2-kuyruk
+#          } limked list ifade edilir
+#3-yığın
+#4-tree
+
+
+# ağaçlar(trees):
+# dallanmalar, bi durumdan bi kaç tane durum çıkabilir
+# her ağaç yapısını liste metodu olarak gösterebiliriz
+#Tanımlar:
+#1-düğüm: ağaç yapısının en üstünde bulunan düğüm
+#2-kök: ağaç yapısının en üstünde bulunan düğüm
+#3-dal(çocuk): ağaç yapısının en üstünde bulunan düğümden aşağıya doğru giden kısımlar
+#4-yaprak: ağaç yapısının en altında bulunan düğümler
+#5-yükseklik: ağaç yapısının en üstünden en altına kadar olan kısım
+#parent: ağaç yapısının en üstünde bulunan düğümden aşağıya doğru giden kısımlar
+#child: ağaç yapısının en üstünde bulunan düğümden aşağıya doğru giden kısımlar     
+#sibling: ağaç yapısının en üstünde bulunan düğümden aşağıya doğru giden kısımlar
+#root: ağaç yapısının en üstünde bulunan düğüm      
+#leaf: ağaç yapısının en altında bulunan düğümler
+#height: ağaç yapısının en üstünden en altına kadar olan kısım
+#depth of three:bir düğümün kök düğümüne olan uzaklığıdır
+#height of three:bir düğümün en altındaki yaprak düğüme olan uzaklığıdırance
+#ancestor(ata:):bir düğümün parentı birinci ancestordur. parent'ın parent'ı ikinci ancestordur.kök kendi haricindeki tüm düğümlerin ancestor'ıdır.
+#descendant:bir düğümün child'ı birinci descendant'dır. child'ın child'ı ikinci descendant'dır. yaprak kendi haricindeki tüm düğümlerin descendant'ıdır.
+#ikili ağaç yapısı(Binary tree):her düğümün en fazla iki çocuğu vardır. bu çocuklar sol ve sağ çocuk olarak adlandırılır.
+##sonlu  düğümler kümesidir,kök olarak adlandırılan özel bir düğüm vardır, her düğüm 
+#full binary tree:her düğümün iki çocuğu vardır. bu çocuklar sol ve sağ çocuk olarak adlandırılır.
+#complete binary tree:soldan sağa doğru düğümler eklendiğinde oluşan ağaçlara Complete binary tree denir. bu ağaçlarda yapraklar en altta ve en soldadır.
+# general tree:her düğümün en az iki çocupu olabilme sınırı olmayan ağaçlardır 
+#ikili arama ağacı:Boş olan veya her düğümü aşağıdaki şartlara uyan anahtara sahip ikili ağaçlara binari search tree denir.
+###1-elemanlar (düğüm) kökünden büyük ve eşitse sağa, küçük ise sola doğru yerleştirilen ağaç türüdür.
+#sıanv sorusu 
+
+
+#ödev:
+#full binary tree de n tane yaprak varsa bu ağaçta toplam 2n-1 tane düğüm vardır. 
+
+
+
+
+
+#her düğümü ve ayrıtları olan küme ağaç değildir.bir çizgenin ağaç olması için her iki düğüm arasında sadece bir yol olmalıdır., devre (cycle,çevrim) olmamalıdır.
+
+
+#### Ağaç Türleri ####
+#kodlama ağacı(coding tree)=
+#sözlük ağacı=
+#  
