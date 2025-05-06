@@ -224,4 +224,4 @@
 #### Ağaç Türleri ####
 #kodlama ağacı(coding tree)=
 #sözlük ağacı=
-#  
+# 
